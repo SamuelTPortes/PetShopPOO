@@ -1,25 +1,8 @@
 public class BathMachine {
-    private boolean petOnMachine = false;
     private int water = 30;
     private int shampoo = 10;
-    private boolean petCleaned = false;
     private boolean machineCleaned = true;
-
-    private boolean isPetCleaned() {
-        return petCleaned;
-    }
-
-    private void setPetCleaned(boolean petCleaned) {
-        this.petCleaned = petCleaned;
-    }
-
-    public boolean isPetOnMachine() {
-        return petOnMachine;
-    }
-
-    private void setPetOnMachine(boolean petOnMachine) {
-        this.petOnMachine = petOnMachine;
-    }
+    private Pet pet;
 
     private boolean isMachineCleaned() {
         return machineCleaned;
@@ -41,7 +24,7 @@ public class BathMachine {
         if(getWater() >= 10 && getShampoo() >= 1 && isPetOnMachine()){
             water -=10;
             shampoo -=2;
-            setPetCleaned(true);
+            pet.setPetCleaned(true);
             System.out.println("Banho realizado");
         } else if(!isPetOnMachine()) System.out.println("Não tem nenhum pet na máquina");
         else if(getWater() < 10) System.out.println("A máquina não tem água suficiente");
@@ -63,7 +46,7 @@ public class BathMachine {
     }
     public void placePet(){
         if(!isPetOnMachine() && isMachineCleaned()) {
-            setPetCleaned(false);
+            pet.setPetCleaned(false);
             setPetOnMachine(true);
             System.out.println("Pet colocado na máquina");
         } else if(isPetOnMachine()) System.out.println("Tem um pet na máquina! É necessário retirar antes de colocar o pet");
