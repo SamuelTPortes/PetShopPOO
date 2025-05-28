@@ -2,13 +2,31 @@ public class BathMachine {
     private boolean petOnMachine = false;
     private int water = 30;
     private int shampoo = 10;
+    private boolean petCleaned = false;
+    private boolean machineCleaned = true;
+
+    private boolean isPetCleaned() {
+        return petCleaned;
+    }
+
+    private void setPetCleaned(boolean petCleaned) {
+        this.petCleaned = petCleaned;
+    }
 
     public boolean isPetOnMachine() {
         return petOnMachine;
     }
 
-    public void setPetOnMachine(boolean petOnMachine) {
+    private void setPetOnMachine(boolean petOnMachine) {
         this.petOnMachine = petOnMachine;
+    }
+
+    private boolean isMachineCleaned() {
+        return machineCleaned;
+    }
+
+    private void setMachineCleaned(boolean machineCleaned) {
+        this.machineCleaned = machineCleaned;
     }
 
     public int getWater() {
@@ -20,22 +38,47 @@ public class BathMachine {
     }
 
     public void giveBath(){
-
+        if(getWater() > 10 && getShampoo() > 1){
+            water -=10;
+            shampoo -=2;
+            setPetCleaned(true);
+        }
     }
     public void fillWater(){
-        water +=2;
+        if(getWater() < 30) {
+            water += 2;
+            if(water > 30)water = 30;
+        }
     }
     public void fillShampoo(){
-        shampoo +=2;
+        if(getShampoo() < 10){
+            shampoo +=2;
+            if(shampoo > 10)shampoo = 10;
+        }
     }
     public void placePet(){
-        if(!isPetOnMachine())
+        if(!isPetOnMachine() && isMachineCleaned()) {
+            setPetCleaned(false);
             setPetOnMachine(true);
-        else
+        } else if(isPetOnMachine()) System.out.println("Tem um pet na máquina! É necessário retirar antes de colocar o pet");
+        else if(!isMachineCleaned()) System.out.println("A máquina está suja! É necessário lavar antes de colocar o pet");
+    }
+    public void removePet(){
+        if(isPetOnMachine()) {
             setPetOnMachine(false);
-    };
-    public void removePet(){};
-    public void cleanMachine(){};
+            if(!isPetCleaned()){
+                System.out.println("Será necessário limpar a máquina");
+                setMachineCleaned(false);
+            }
+        } else System.out.println("Não há nenhum pet na máquina");
+    }
+    public void cleanMachine(){
+        if(getWater() > 2 && getShampoo() > 0 && !isMachineCleaned()) {
+            water -= 3;
+            shampoo -= 1;
+            setMachineCleaned(true);
+        } else System.out.println("A máquina já está limpa");
+    }
 
 }
 
