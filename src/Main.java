@@ -5,14 +5,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         sc.useDelimiter("\n");
 
-        String input;
-        boolean isInputing = true;
-
+        boolean isInputing = true, nextPet = false;
         BathMachine machine1 = new BathMachine();
+
         while (isInputing) {
+            System.out.println("insira o nome do seu pet!");
+            if(!nextPet) {
+                String nomePet = sc.next();
+                Pet pet = new Pet(nomePet);
+                nextPet = true;
+            }
             System.out.println("\nOs comandos são os seguintes:\n 1.Checar agua | 2.Checar Shampoo \n 3.Checar Máquina |" +
-                    " 4.Abastecer Água \n 5.Abastecer Shampoo | 6.Colocar pet \n 7.Dar banho | 8.Retirar pet \n 9.Limpar máquina | 10.Sair");
-            input = sc.next();
+                    " 4.Abastecer Água \n 5.Abastecer Shampoo | 6.Colocar pet \n 7.Dar banho | 8.Retirar pet \n 9.Limpar máquina | 10.Colocar outro Pet \n 11.Sair");
+            String input = sc.next();
             isInputing = false;
             switch (input) {
                 case "1":
@@ -24,7 +29,7 @@ public class Main {
                     isInputing = true;
                     break;
                 case "3":
-                    if(machine1.isPetOnMachine()) System.out.println("Tem um pet na máquina!");
+                    if(machine1.isMachineOccupied()) System.out.println("Tem um pet na máquina!");
                     else System.out.println("Não tem nenhum pet na máquina");
                     isInputing = true;
                     break;
@@ -41,11 +46,11 @@ public class Main {
                     isInputing = true;
                     break;
                 case "7":
-                    machine1.giveBath();
+                    machine1.giveBath(pet);
                     isInputing = true;
                     break;
                 case "8":
-                    machine1.removePet();
+                    machine1.removePet(pet);
                     isInputing = true;
                     break;
                 case "9":
@@ -53,6 +58,10 @@ public class Main {
                     isInputing = true;
                     break;
                 case "10":
+                    nextPet = false;
+                    isInputing = true;
+                    break;
+                case "11":
                     break;
                 default:
                     isInputing = true;
