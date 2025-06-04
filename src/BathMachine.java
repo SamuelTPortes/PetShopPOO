@@ -46,6 +46,7 @@ public class BathMachine {
         else if(getWater() < 10) System.out.println("A máquina não tem água suficiente");
         else if(getShampoo() < 1) System.out.println("A máquina não tem shampoo suficiente");
     }
+
     public void fillWater(){
         if(getWater() < 30) {
             water += 2;
@@ -53,6 +54,7 @@ public class BathMachine {
             System.out.println("2 litros de água adicionados");
         } else System.out.println("A máquina já está cheia");
     }
+
     public void fillShampoo(){
         if(getShampoo() < 10){
             shampoo +=2;
@@ -70,6 +72,7 @@ public class BathMachine {
         else if(!isMachineCleaned()) System.out.printf("A máquina está suja! É necessário lavar antes de colocar o %s\n", pet.getName());
         else if(pet.isPetCleaned()) System.out.printf("O %s já está limpo! Não tem motivos para coloca-lo na máquina!",pet.getName());
     }
+
     public void removePet(Pet pet){
         if(isMachineOccupied()) {
             setMachineOccupied(false);
@@ -80,6 +83,7 @@ public class BathMachine {
             }
         } else System.out.println("Não há nenhum pet na máquina");
     }
+
     public void cleanMachine(){
         if(getWater() >= 3 && getShampoo() >= 1 && !isMachineCleaned()) {
             water -= 3;
@@ -92,24 +96,3 @@ public class BathMachine {
     }
 
 }
-
-/*
-Escreva um código onde temos o controle de banho de um petshop, a maquina de banhos dos pets deve ter as seguintes operações:
-Dar banho no pet;
-Abastecer com água;
-Abastecer com shampoo;
-verificar nivel de água;
-verificar nivel de shampoo;
-verificar se tem pet no banho;
-colocar pet na maquina;
-retirar pet da máquina;
-limpar maquina.
-Siga as seguintes regras para implementação
-
-A maquina de banho deve permitir somente 1 pet por vez;
-Cada banho realizado irá consumir 10 litros de água e 2 litros de shampoo;
-A máquina tem capacidade máxima de 30 litros de água e 10 litros de shampoo;
-Se o pet for retirado da maquina sem estar limpo será necessário limpar a máquina para permitir a entrada de outro pet;
-A limpeza da máquina ira consumir 3 litros de água e 1 litro de shampoo;
-O abastecimento de água e shampoo deve permitir 2 litros por vez que for acionado;
-*/
